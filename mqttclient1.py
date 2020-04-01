@@ -57,7 +57,6 @@ client.loop_start() #start the loop
 print("Subscribing to topic ")
 client.subscribe("Inverter/GridWatts")
 client.subscribe("Inverter/LoadWatts")
-client.subscribe("Inverter/SolarWatts")
 client.subscribe("Inverter/PvWattsTotal")
 client.subscribe("Inverter/MPPT1_Amps")
 client.subscribe("Inverter/MPPT1_Volts")

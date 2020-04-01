@@ -12,19 +12,25 @@ y_vals = []
 
 index = count()
 
+topics = ["Inverter/GridWatts","Inverter/LoadWatts","Inverter/PvWattsTotal",
+"Inverter/MPPT1_Amps","Inverter/MPPT1_Volts"]
+
 
 def animate(i):
     data = pd.read_csv('data.csv')
 
-    grid_data = 
-    x = data['x_value']
-    y1 = data['total_1']
-    y2 = data['total_2']
+    grid_data = data.loc[data['topic']=='Inverter/GridWatts']
+    pv_data = data.loc[data['topic']=='Inverter/PvWattsTotal']
+	# print(grid_data[['epochTime', 'value']])
+
+    # x = data['x_value']
+    # y1 = data['total_1']
+    # y2 = data['total_2']
 
     plt.cla()
 
-    plt.plot(x, y1, label='Channel 1')
-    plt.plot(x, y2, label='Channel 2')
+    plt.plot(grid_data['epochTime'], grid_data['value'], label='GridWatts')
+    plt.plot(pv_data['epochTime'], pv_data['value'], label='PVWatts')
 
     plt.legend(loc='upper left')
     plt.tight_layout()
