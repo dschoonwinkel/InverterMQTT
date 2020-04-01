@@ -3,6 +3,7 @@ from itertools import count
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
+import numpy as np
 
 plt.style.use('fivethirtyeight')
 
@@ -14,6 +15,8 @@ index = count()
 
 def animate(i):
     data = pd.read_csv('data.csv')
+
+    grid_data = 
     x = data['x_value']
     y1 = data['total_1']
     y2 = data['total_2']

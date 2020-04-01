@@ -1,0 +1,5 @@
+MPPT = Maximum Power Point Tracking
+
+That is, the solar system voltage and current is sampled to see what 
+the maximum power is available. MPPT is the maximum possible power
+available from the solar system at the moment.
