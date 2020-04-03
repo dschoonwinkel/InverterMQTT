@@ -27,7 +27,7 @@ else:
     filename = '01_04_2020.csv'
     print("Usage animate_plot.py <filename.csv>")
 
-def animate(i):
+def plot_data():
     data = pd.read_csv(filename)
 
     # print(data)
@@ -43,16 +43,19 @@ def animate(i):
 
     plt.viridis()
     plt.cla()
-    ax = plt.gca()
-
+    ax1 = plt.subplot(4,1,1)
     grid_data_x = grid_data['epochTime']
-
-    ax.plot(grid_data_x, grid_data['value'], 'k', label='GridWatts')
-    ax.plot(pv_data['epochTime'], pv_data['value'], label='PVWatts')
-    ax.plot(load_data['epochTime'], load_data['value'], label='LoadWatts')
-    ax.plot(battery_data['epochTime'], battery_data['value'], label='BatteryWatts')
-
-    ax.legend(loc='best')
+    ax1.plot(grid_data_x, grid_data['value'], 'k', label='GridWatts')
+    ax1.legend(loc='best')
+    ax2 = plt.subplot(4,1,2, sharex=ax1, sharey=ax1)
+    ax2.plot(pv_data['epochTime'], pv_data['value'], 'b', label='PVWatts')
+    ax2.legend(loc='best')
+    ax3 = plt.subplot(4,1,3, sharex=ax2, sharey=ax2)
+    ax3.plot(load_data['epochTime'], load_data['value'], 'r', label='LoadWatts')
+    ax3.legend(loc='best')
+    ax4 = plt.subplot(4,1,4, sharex=ax3, sharey=ax3)
+    ax4.plot(battery_data['epochTime'], battery_data['value'], 'y', label='BatteryWatts')
+    ax4.legend(loc='best')
     plt.tight_layout()
     plt.gcf().autofmt_xdate()
 
@@ -62,16 +65,16 @@ def animate(i):
     )
 
     
-    ax.text(0.1, 0.1,'Records: %d' % len(pv_data),
+    ax4.text(0.1, 0.1,'Records: %d' % len(pv_data),
      horizontalalignment='center',
      verticalalignment='center',
-     transform = ax.transAxes)
+     transform = ax4.transAxes)
+    plt.gcf().set_size_inches(16,9)
     if saveplot == True:
-        plt.gcf().set_size_inches(16,9)
         plt.savefig(filename + ".png", dpi=100)
 
-
-ani = FuncAnimation(plt.gcf(), animate, interval=1000)
+# ani = FuncAnimation(plt.gcf(), animate, interval=1000)
+plot_data()
 
 plt.tight_layout()
 plt.show()
