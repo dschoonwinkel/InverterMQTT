@@ -5,7 +5,7 @@ import time
 import configparser
  
 config = configparser.ConfigParser()
-config.read('emailcredentials.conf')
+config.read('/home/pi/Development/Python/InverterMQTT/emailcredentials.conf')
 email = config['credentials']['email']
 password = config['credentials']['password']
 to_email = config['credentials']['to_email']

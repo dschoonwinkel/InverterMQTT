@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import paho.mqtt.client as mqtt
 import time
 import csv
@@ -61,6 +61,7 @@ client.subscribe("Inverter/PvWattsTotal")
 client.subscribe("Inverter/MPPT1_Amps")
 client.subscribe("Inverter/MPPT1_Volts")
 client.subscribe("Inverter/BatteryWatts")
+client.subscribe("Inverter/BatterySOC")
 
 try:
     while(True):

@@ -6,7 +6,10 @@ import os
 from SimpleEmailer import Emailer
 import socket
 
-filename = "$HOME/Development/Python/MQTTClient/" + datetime.today().strftime('%d_%m_%Y') + ".csv"
+from os.path import expanduser
+home = expanduser("~")
+
+filename = home + "/Development/Python/InverterMQTT/" + datetime.today().strftime('%d_%m_%Y') + ".csv"
 print(filename)
 # with open(filename, 'r') as csv_file:
 #     data = csv_file.readlines()
@@ -32,10 +35,8 @@ if (timeDifference > 600):
     Regards, Raspberry Pi Emailer %s" % (timeDifference, socket.gethostname())
     sender.sendmail(emailSubject, emailContent)
 
-from os.path import expanduser
-home = expanduser("~")
 
-outfile = open(home + "/Development/Python/MQTTClient/watchdogtimer_lastupdate.log", 'a')
+outfile = open(home + "/Development/Python/InverterMQTT/watchdogtimer_lastupdate.log", 'a')
 currentDatetime = datetime.today().strftime('%d_%m_%Y %H:%M:%S')
 outfile.write(currentDatetime + ",diff: %f" % timeDifference + "\n")
 
