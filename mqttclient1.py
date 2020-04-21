@@ -62,6 +62,7 @@ client.subscribe("Inverter/MPPT1_Amps")
 client.subscribe("Inverter/MPPT1_Volts")
 client.subscribe("Inverter/BatteryWatts")
 client.subscribe("Inverter/BatterySOC")
+client.subscribe("Inverter/BatteryVolts")
 
 try:
     while(True):
